@@ -1,3 +1,12 @@
 {
-  "message": "Hello, Vue.js from JSON!"
+  "items": [
+    {
+      "question": "Parfois je suis d’or, parfois de chocolat<br>Additionne chacun des chiffres du bureau à mon nom<br>Et gros gain tu auras",
+      "answer": "12"
+    },
+    {
+      "question": "Question 2",
+      "answer": "2"
+    }
+  ]  
 }
