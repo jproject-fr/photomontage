@@ -35,12 +35,35 @@
       </div>
     </nav>
 
-    <div class="container my-5">
+    <div class="container my-5" id="app">
       <h1>Objectif</h1>
       <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel enim ex. Nulla facilisi. Vestibulum tempor lectus ut massa varius, vitae molestie metus sagittis. Fusce condimentum, nulla ut commodo varius, elit tellus lacinia elit, quis rhoncus elit tortor ut ex. Nam sodales libero at neque varius, eu mollis sapien elementum. Fusce id nisl eros.</p>
+      <div>
+        <p>{{ message }}</p>
+      </div>
     </div>
 
+    <!-- Vue.js CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    message: ''
+                }
+            },
+            created() {
+                fetch('data/1.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.message = data.message
+                    })
+                }
+        })
+        app.mount('#app')
+    </script>
   </body>
 </html>
