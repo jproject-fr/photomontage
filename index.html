@@ -76,10 +76,10 @@
                 </div>
             </div>
             <div v-else>
-                <p v-html="question" class="lead"></p>
                 <div v-if="showSuccess" class="alert alert-success" role="alert">
                     Bravo, c'est une bonne réponse, passez au prochain défi.
                 </div>
+                <p v-html="question" class="lead"></p>
                 <div v-if="showError" class="alert alert-danger" role="alert">
                     Votre réponse est incorrecte.
                 </div>
