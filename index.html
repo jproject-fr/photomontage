@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mission</title>
@@ -14,15 +15,17 @@
             aria-valuemax: var(--aria-valuemax);
         }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="#">La Mission</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!--
+        <div class="container">
+            <a class="navbar-brand" href="#">La Mission</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
@@ -40,41 +43,41 @@
           </ul>
         </div>
         -->
-      </div>
+        </div>
     </nav>
 
     <div class="container my-5" id="app">
-      <h3 class="mb-4">Enigme</h3>
-      <div class="progress mb-4">
-        <div class="progress-bar" role="progressbar" :style="progressBarCssVars"></div>
-      </div>
-      <div v-if="missionCompleted">
-        <div class="alert alert-success" role="alert">
-            <p class="lead">Félicitations agent {{ agentName }}, votre mission est terminée !</p>
-            <p class="lead">Nous vous en somme très reconnaissant !</p>
+        <h3 class="mb-4">Enigme</h3>
+        <div class="progress mb-4">
+            <div class="progress-bar" role="progressbar" :style="progressBarCssVars"></div>
         </div>
-        <div class="mt-4">
-            <button class="w-100 btn btn-lg btn-primary" type="submit" @click="replay">Rejouer</button>  
-        </div>
-      </div>
-      <div v-else>
-        <p v-html="question" class="lead"></p>
-        <div v-if="showSuccess" class="alert alert-success" role="alert">
-            Bravo, c'est une bonne réponse, passez au prochain défi.
-        </div>
-        <div v-if="showError" class="alert alert-danger" role="alert">
-            Votre réponse est incorrecte.
-        </div>
-        <form @submit.prevent="submitAnswer">
-            <div class="form-floating">
-                <input type="text" class="form-control" id="answer" v-model="givenAnswer" placeholder="réponse">
-                <label for="answer">Réponse</label>
+        <div v-if="missionCompleted">
+            <div class="alert alert-success" role="alert">
+                <p class="lead">Félicitations agent {{ agentName }}, votre mission est terminée !</p>
+                <p class="lead">Nous vous en somme très reconnaissant !</p>
             </div>
             <div class="mt-4">
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Valider</button>  
+                <button class="w-100 btn btn-lg btn-primary" type="submit" @click="replay">Rejouer</button>
             </div>
-        </form>
-      </div>
+        </div>
+        <div v-else>
+            <p v-html="question" class="lead"></p>
+            <div v-if="showSuccess" class="alert alert-success" role="alert">
+                Bravo, c'est une bonne réponse, passez au prochain défi.
+            </div>
+            <div v-if="showError" class="alert alert-danger" role="alert">
+                Votre réponse est incorrecte.
+            </div>
+            <form @submit.prevent="submitAnswer">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="answer" v-model="givenAnswer" placeholder="réponse">
+                    <label for="answer">Réponse</label>
+                </div>
+                <div class="mt-4">
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">Valider</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <!-- Vue.js CDN -->
@@ -113,20 +116,20 @@
             computed: {
                 progressBarCssVars() {
                     return {
-                        '--width': this.progress + "%", 
-                        '--aria-valuenow': this.progress, 
-                        '--aria-valuemin':0,
-                        '--aria-valuemax':100
+                        '--width': this.progress + "%",
+                        '--aria-valuenow': this.progress,
+                        '--aria-valuemin': 0,
+                        '--aria-valuemax': 100
                     }
                 }
             },
             methods: {
                 loadJsonData() {
-                     fetch('data/1.json')
+                    fetch('data/1.json')
                         .then(response => response.json())
                         .then(data => {
                             this.items = data.items,
-                            this.numberOfQuestions = this.items.length
+                                this.numberOfQuestions = this.items.length
                         })
                         .then(display => {
                             this.displayQuestion()
@@ -148,7 +151,7 @@
                                 this.showSuccess = false
                             }, 5000)
                         }
-                        
+
                     }
                     else {
                         this.showError = true
@@ -158,10 +161,10 @@
                     }
                 },
                 displayQuestion() {
-                    this.question = this.items[this.step-1].question.replace(/\n/g, '<br>'),
-                    this.answer = this.items[this.step-1].answer.replace(/\n/g, '<br>')
+                    this.question = this.items[this.step - 1].question.replace(/\n/g, '<br>'),
+                        this.answer = this.items[this.step - 1].answer.replace(/\n/g, '<br>')
                     this.givenAnswer = ''
-                    this.progress = ((this.step-1)/this.numberOfQuestions) * 100
+                    this.progress = ((this.step - 1) / this.numberOfQuestions) * 100
                 },
                 replay() {
                     this.step = 1
@@ -174,5 +177,6 @@
         })
         app.mount('#app')
     </script>
-  </body>
+</body>
+
 </html>
