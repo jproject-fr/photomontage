@@ -1,12 +1,16 @@
 {
   "items": [
     {
-      "question": "Parfois je suis d’or, parfois de chocolat<br>Additionne chacun des chiffres du bureau à mon nom<br>Et gros gain tu auras",
+      "question": "Parfois je suis d’or, parfois de chocolat<br>Additionne chacun des chiffres du bureau à mon nom<br>Et l'étape tu passeras",
       "answer": "12"
     },
     {
       "question": "Question 2",
       "answer": "2"
+    },
+    {
+      "question": "Question 3",
+      "answer": "3"
     }
   ]  
 }
