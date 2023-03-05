@@ -1,39 +1,39 @@
 {
   "items": [
     {
-      "question": "Le premier oeuf est dans le compartiment à oeufs d’un réfrigérateur d’un des kitchen corners de la Turbine, mais pas au 2ème étage. Trouve le et répond à la question qui se trouve à l'intérieur",
+      "question": "Le premier oeuf est dans le compartiment à oeufs d’un réfrigérateur d’un des kitchen corners de la Turbine, mais pas au 2ème étage. Trouve le et répond à la question qui se trouve à l'intérieur.",
       "answer": "1",
       "hint": "Aile Ouest, Rez de chaussée"
     },
     {
-      "question": "Parfois je suis d’or, parfois de chocolat<br>Additionne chacun des chiffres du bureau à mon nom<br>Et l'étape tu passeras",
+      "question": "Parfois je suis d’or, parfois de chocolat<br>Additionne chacun des chiffres du bureau à mon nom<br>Et l'étape tu passeras.",
       "answer": "2",
       "hint": "Je commence par un P"
     },
     {
-      "question": "Que je sois bleu, violet ou rose, lorsque ça devient dur, il y a toujours un grand qui m’arrose<br>Le mardi tu me roules, mais tu ne me fumes pas<br>A mes côtés j’ai vu un d’ceux qu’on fait sur l’plat. <br><br>Et dedans il y aura la question à laquelle tu dois répondre",
+      "question": "Que je sois bleu, violet ou rose, lorsque ça devient dur, il y a toujours un grand qui m’arrose<br>Le mardi tu me roules, mais tu ne me fumes pas<br>A mes côtés j’ai vu un d’ceux qu’on fait sur l’plat. <br><br>Et dedans il y aura la question à laquelle tu dois répondre.",
       "answer": "5",
-      "hint": "les gens mettent leurs pieds, leurs coudes ou leurs fesses sur moi, et j'ai vu un oeuf de couleur bizarre"
+      "hint": "les gens mettent leurs pieds, leurs coudes ou leurs fesses sur moi, et j'ai vu un oeuf de couleur bizarre."
     },
     {
-      "question": "Avec tes jambes, soulève 2 fois ton poids<br>Soulève un peu plus que la moitié de ton âge avec tes bras<br>Fais la somme des post-it que tu vois<br>Et entre ci-dessous le résultat",
+      "question": "Avec tes jambes, soulève 2 fois ton poids<br>Soulève un peu plus que la moitié de ton âge avec tes bras<br>Fais la somme des post-it que tu vois<br>Et entre ci-dessous le résultat.",
       "answer": "8",
-      "hint": "100 avec la presse, 15 avec les bras, les post-it sont entre les poids"
+      "hint": "100 avec la presse, 15 avec les bras, les post-it sont entre les poids."
     },
     {
       "question": "Je suis une carte, mais aussi le nom d’une équipe locale, dans un sport utilisant la forme du produit phare de votre entreprise.<br>Qui suis-je ?",
       "answer": "joker",
-      "hint": "Uniquement dans un jeu de 54 cartes"
+      "hint": "Uniquement dans un jeu de 54 cartes."
     },
     {
       "question": "Trouve l’oeuf situé au pied d’un arbre de la terrasse de la Turbine et répond à la question qui s’y trouve.",
       "answer": "robin",
-      "hint": "Je commence par un R"
+      "hint": "Je commence par un R."
     },
     {
       "question": "Scrabble Time !<br>Remet les lettres dans le bon ordre pour obtenir un de tes gros objectifs à venir<br>0 A 4 2 S P 2 R I",
       "answer": "paris 2024",
-      "hint": "Ce sera l'an prochain"
+      "hint": "Ce sera l'an prochain."
     }
   ]  
 }
