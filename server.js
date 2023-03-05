@@ -2,6 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+const axios = require('axios');
+const fs = require('fs');
 
 const app = express();
 
@@ -18,37 +20,26 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '.', 'index.html'));
 });
 
+// Handle posting scores
+app.post('/api/write-score', (req, res) => {
+    // Extract the form data from the request body
+    const score = req.body['score'];
+
+    // Do something with the form data
+    console.log(score);
+
+    // Write the form data to a file
+    fs.appendFile('scores.txt', score + "\n", err => {
+        if (err) {
+            console.error(err);
+            res.status(500).send('Error writing to file');
+        } else {
+            res.send('Score data written to file');
+        }
+    });
+});
+
 const port = process.env.PORT || 3000;
-
-
-// server-side Node.js code
-const http = require('http');
-const fs = require('fs');
-
-http.createServer((req, res) => {
-    if (req.method === 'POST' && req.url === '/api/write-score') {
-        console.log("write 1");
-        let data = '';
-        req.on('data', (chunk) => {
-            data += chunk;
-        });
-        req.on('end', () => {
-            const parsedData = JSON.parse(data);
-            fs.appendFile('scores.txt', parsedData.data, (err) => {
-                if (err) {
-                    res.statusCode = 500;
-                    res.end('Error writing file');
-                } else {
-                    res.statusCode = 200;
-                    res.end('File written successfully');
-                }
-            });
-        });
-    } else {
-        res.statusCode = 404;
-        res.end('Not found');
-    }
-}).listen(3000);
 
 
 app.listen(port, () => {

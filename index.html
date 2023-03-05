@@ -7,7 +7,7 @@
     <title>Mission</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Share+Tech+Mono"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" />
     <style>
         .time {
             font-family: 'Share Tech Mono', sans-serif;
@@ -67,8 +67,10 @@
             </div>
             <div v-if="missionCompleted">
                 <div class="alert alert-success" role="alert">
-                    <p class="lead">Félicitations agent <strong>{{ agentName }}</strong>, votre mission est terminée !</p>
-                    <p class="lead">Vois l'avez complétée en {{ minutes }} minutes et {{ secondsDisplay }} secondes !</p>
+                    <p class="lead">Félicitations agent <strong>{{ agentName }}</strong>, votre mission est terminée !
+                    </p>
+                    <p class="lead">Vois l'avez complétée en {{ minutes }} minutes et {{ secondsDisplay }} secondes !
+                    </p>
                     <p class="lead">Nous vous en sommes très reconnaissant !</p>
                 </div>
                 <div class="mt-4">
@@ -79,7 +81,16 @@
                 <div v-if="showSuccess" class="alert alert-success" role="alert">
                     Bravo, c'est une bonne réponse, passez au prochain défi.
                 </div>
+                <div v-if="hintAvailable" class="mb-4 float-end text-end" style="width: 250px;">
+                    <button type="button" class="btn btn-primary" @click="useHint">Utiliser un indice</button>
+                    <div class="text-end" style="margin-top: 5px; font-size: 13px;">Attention, vous n'avez droit qu'à un
+                        seul indice pour toute la partie.</div>
+                </div>
                 <p v-html="question" class="lead"></p>
+                <div v-if="showHint" class="alert alert-info" role="alert">
+                    Indice :
+                    {{ hint }}
+                </div>
                 <div v-if="showError" class="alert alert-danger" role="alert">
                     Votre réponse est incorrecte.
                 </div>
@@ -102,6 +113,8 @@
 
     <!-- Vue.js CDN -->
     <script src="https://unpkg.com/vue@next"></script>
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -114,11 +127,14 @@
                     agentName: "ST0503",
                     numberOfQuestions: 0,
                     progress: 0,
+                    hintAvailable: true,
+                    showHint: false,
                     showError: false,
                     showSuccess: false,
                     items: [],
                     question: '',
                     answer: '',
+                    hint: '',
                     givenAnswer: '',
                     missionCompleted: false,
                     seconds: 0,
@@ -127,12 +143,13 @@
                 }
             },
             mounted() {
-                this.step = parseInt(localStorage.getItem('step')) || this.step;
-                this.missionCompleted = localStorage.getItem('missionCompleted') === 'true' || this.missionCompleted;
-                this.seconds = parseInt(localStorage.getItem('seconds')) || this.seconds;
-                this.gameStarted = localStorage.getItem('gameStarted') === 'true' || this.gameStarted;
+                this.step = parseInt(localStorage.getItem('step')) || this.step
+                this.missionCompleted = localStorage.getItem('missionCompleted') === 'true' || this.missionCompleted
+                this.seconds = parseInt(localStorage.getItem('seconds')) || this.seconds
+                this.gameStarted = localStorage.getItem('gameStarted') === 'true' || this.gameStarted
+                this.hintAvailable = localStorage.getItem('hintAvailable') === 'true' || !this.hintAvailable
+                this.showHint = localStorage.getItem('showHint') === 'true' || this.showHint
                 if (this.missionCompleted) {
-                    console.log("completed");
                     this.progress = 100
                 }
                 else {
@@ -169,6 +186,12 @@
                         localStorage.setItem('seconds', this.seconds)
                     }
                 },
+                useHint() {
+                    this.hintAvailable = false
+                    localStorage.setItem('hintAvailable', this.hintAvailable)
+                    this.showHint = true
+                    localStorage.setItem('showHint', this.showHint)
+                },
                 loadJsonData() {
                     fetch('data/1.json')
                         .then(response => response.json())
@@ -187,10 +210,17 @@
                             this.progress = 100
                             clearInterval(this.incrementTime);
                             localStorage.setItem('missionCompleted', this.missionCompleted)
+                            axios.post('/api/write-score', {
+                                score: this.agentName + "->" + this.minutes + ":" + this.secondsDisplay
+                            })
                         }
                         else {
                             this.step++
                             localStorage.setItem('step', this.step)
+                            if (this.showHint) {
+                                this.showHint = false
+                                localStorage.setItem('showHint', this.showHint)
+                            }
                             this.displayQuestion()
                             this.showSuccess = true
                             setTimeout(() => {
@@ -208,8 +238,9 @@
                 },
                 displayQuestion() {
                     if (!this.missionCompleted) {
-                        this.question = this.items[this.step - 1].question.replace(/\n/g, '<br>'),
+                        this.question = this.items[this.step - 1].question.replace(/\n/g, '<br>')
                         this.answer = this.items[this.step - 1].answer.replace(/\n/g, '<br>')
+                        this.hint = this.items[this.step - 1].hint.replace(/\n/g, '<br>')
                         this.givenAnswer = ''
                         this.progress = ((this.step - 1) / this.numberOfQuestions) * 100
                     }
@@ -223,6 +254,10 @@
                     localStorage.setItem('gameStarted', this.gameStarted)
                     this.seconds = 0
                     localStorage.setItem('seconds', this.seconds)
+                    this.hintAvailable = true
+                    localStorage.setItem('hintAvailable', this.hintAvailable)
+                    this.showHint = false
+                    localStorage.setItem('showHint', this.showHint)
                     this.loadJsonData()
                 }
             }
