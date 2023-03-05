@@ -96,10 +96,10 @@
                 <div v-if="showSuccess" class="alert alert-success" role="alert">
                     Bravo, c'est une bonne réponse, passez au prochain défi.
                 </div>
-                <div v-if="hintAvailable" class="mb-4 float-end text-end" style="width: 250px;">
+                <div v-if="hintAvailable" class="mb-4">
                     <button type="button" class="btn btn-primary" @click="useHint">Utiliser un indice</button>
-                    <div class="text-end" style="margin-top: 5px; font-size: 13px;">Attention, vous n'avez droit qu'à un
-                        seul indice pour toute la partie.</div>
+                    <div style="margin-top: 5px; font-size: 12px;">Attention, vous n'avez droit qu'à un
+                        seul indice pour toute la partie. Utilisez-le à bon escient.</div>
                 </div>
                 <p v-html="question" class="lead" style="margin-bottom: 80px;"></p>
                 <div v-if="showHint" class="alert alert-info" role="alert">
@@ -124,8 +124,8 @@
             <p class="lead">La mission est chronométrée, soyez au top !</p>
             <button class="w-100 btn btn-lg btn-primary" type="submit" @click="startGame">Démarrer</button>
         </div>
-        <div class="fixed-bottom text-end mb-4 me-4">
-            <img src="img/stamp.png" width="160" />
+        <div class="text-end mt-4 me-4">
+            <img src="img/stamp.png" width="140" />
         </div>
     </div>
 
@@ -165,8 +165,10 @@
                 this.missionCompleted = localStorage.getItem('missionCompleted') === 'true' || this.missionCompleted
                 this.seconds = parseInt(localStorage.getItem('seconds')) || this.seconds
                 this.gameStarted = localStorage.getItem('gameStarted') === 'true' || this.gameStarted
-                this.hintAvailable = localStorage.getItem('hintAvailable') === 'true' || !this.hintAvailable
                 this.showHint = localStorage.getItem('showHint') === 'true' || this.showHint
+                if (localStorage.getItem('hintAvailable') === 'false') {
+                    this.hintAvailable = false
+                }
                 if (this.missionCompleted) {
                     this.progress = 100
                 }
