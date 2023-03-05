@@ -67,11 +67,26 @@
             </div>
             <div v-if="missionCompleted">
                 <div class="alert alert-success" role="alert">
-                    <p class="lead">Félicitations agent <strong>{{ agentName }}</strong>, votre mission est terminée !
+                    <p class="lead">
+                        Félicitations agent <strong>{{ agentName }}</strong>, votre mission est terminée !
                     </p>
-                    <p class="lead">Vois l'avez complétée en {{ minutes }} minutes et {{ secondsDisplay }} secondes !
+                    <p class="lead">
+                        Vois l'avez complétée en {{ minutes }} minutes et {{ secondsDisplay }} secondes !
                     </p>
-                    <p class="lead">Nous vous en sommes très reconnaissant !</p>
+                    <p class="lead">
+                        Nous vous en sommes très reconnaissant !
+                    </p>
+                    <p class="lead">
+                        Allez prendre un smoothie ainsi qu'une barre protéinée se trouvant dans le
+                        réfrigérateur et le placard le plus proche de votre labo.<br>
+                        <strong>Vous l'avez bien mérité.</strong>
+                    </p>
+                    <p class="lead">
+                        Dernière chose: <br>
+                        Myriame ne pouvait rester, son prénom ne termine pas en <strong>-ine</strong><br>
+                        Trouve un autre prénom qui rime avec les vôtres<br>
+                        Et communique le à ton associée, en lui ramenant tous les oeufs trouvés sur ton passage
+                    </p>
                 </div>
                 <div class="mt-4">
                     <button class="w-100 btn btn-lg btn-primary" type="submit" @click="replay">Rejouer</button>
@@ -86,7 +101,7 @@
                     <div class="text-end" style="margin-top: 5px; font-size: 13px;">Attention, vous n'avez droit qu'à un
                         seul indice pour toute la partie.</div>
                 </div>
-                <p v-html="question" class="lead"></p>
+                <p v-html="question" class="lead" style="margin-bottom: 80px;"></p>
                 <div v-if="showHint" class="alert alert-info" role="alert">
                     Indice :
                     {{ hint }}
@@ -152,9 +167,8 @@
                 if (this.missionCompleted) {
                     this.progress = 100
                 }
-                else {
-                    setInterval(this.incrementTime, 1000)
-                }
+                this.showTime()
+                setInterval(this.incrementTime, 1000)
                 this.loadJsonData()
             },
             computed: {
@@ -175,15 +189,18 @@
                 incrementTime() {
                     if (this.gameStarted && !this.missionCompleted) {
                         this.seconds++
-                        this.minutes = Math.ceil(this.seconds / 60) - 1
-                        if (this.minutes < 10) {
-                            this.minutes = "0" + this.minutes
-                        }
-                        this.secondsDisplay = this.seconds % 60
-                        if (this.secondsDisplay < 10) {
-                            this.secondsDisplay = "0" + this.secondsDisplay
-                        }
                         localStorage.setItem('seconds', this.seconds)
+                        this.showTime()
+                    }
+                },
+                showTime() {
+                    this.minutes = Math.ceil(this.seconds / 60) - 1
+                    if (this.minutes < 10) {
+                        this.minutes = "0" + this.minutes
+                    }
+                    this.secondsDisplay = this.seconds % 60
+                    if (this.secondsDisplay < 10) {
+                        this.secondsDisplay = "0" + this.secondsDisplay
                     }
                 },
                 useHint() {
@@ -204,7 +221,7 @@
                         })
                 },
                 submitAnswer() {
-                    if (this.givenAnswer.includes(this.answer)) {
+                    if (this.givenAnswer.toLowerCase().includes(this.answer)) {
                         if (this.step == this.numberOfQuestions) {
                             this.missionCompleted = true
                             this.progress = 100
