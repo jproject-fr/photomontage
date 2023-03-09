@@ -16,12 +16,12 @@
       "hint": "les gens mettent leurs pieds, leurs coudes ou leurs fesses sur moi, et j'ai vu un oeuf de couleur bizarre."
     },
     {
-      "question": "Avec tes jambes, soulève la dizaine de ton âge en poids<br>Soulève un peu plus de la moitié de ton âge avec tes bras<br>Fais la somme des 2 post-it que tu vois<br>Et entre ci-dessous le résultat.",
+      "question": "Avec tes jambes, soulève un peu plus que ton poids<br>Soulève un peu plus que ton âge avec tes bras<br>Fais la somme des 2 post-it que tu vois<br>Et entre ci-dessous le résultat.",
       "answer": "8",
-      "hint": "100 avec la presse, 15 avec les bras, les post-it sont entre les poids."
+      "hint": "70 avec la presse, 25 avec les bras, les post-it sont entre les poids."
     },
     {
-      "question": "Je suis une carte, mais aussi le nom d’une équipe locale, dans un sport utilisant la forme du produit phare de votre entreprise.<br>Qui suis-je ?",
+      "question": "Je suis une carte, mais aussi le nom d’une équipe locale, dans un sport qui se joue avec des patins.<br>Qui suis-je ?",
       "answer": "joker",
       "hint": "Uniquement dans un jeu de 54 cartes."
     },
@@ -31,7 +31,7 @@
       "hint": "Je commence par un R."
     },
     {
-      "question": "Scrabble Time !<br>Remet les lettres dans le bon ordre pour obtenir un de tes gros objectifs à venir<br>0 A 4 2 S P 2 R I",
+      "question": "Scrabble Time !<br>Remet les lettres dans le bon ordre pour obtenir un gros évènement sportif à venir<br>0 A 4 2 S P 2 R I",
       "answer": "paris 2024",
       "hint": "Ce sera l'an prochain."
     }
