@@ -76,20 +76,6 @@
                     <p class="lead">
                         Nous vous en sommes très reconnaissant !
                     </p>
-                    <p class="lead">
-                        Allez prendre un smoothie fait maison pour votre associée et vous, une barre protéinée se trouvant dans le placard le plus proche de votre labo, ou garder là pour un avant ou un après séance de sport.<br>
-                        La tasse se trouvant à côté est pour vous, pour un bon verre d'eau ou un thé. Il devrait également y avoir une carte.
-                        <strong>Vous l'avez bien mérité.</strong>
-                    </p>
-                    <p class="lead">
-                        Bon courage pour la qualification en équipe de France de tir à l'arc avec Robin des bois.
-                    </p>
-                    <p class="lead">
-                        Dernière chose: <br>
-                        Myriame ne pouvait rester, son prénom ne termine pas en <strong>-ine</strong><br>
-                        Trouvez un autre prénom qui rime avec les vôtres<br>
-                        Et communiquez le à votre associée, en lui ramenant tous les oeufs trouvés sur votre passage.
-                    </p>
                 </div>
                 <div class="mt-4">
                     <button class="w-100 btn btn-lg btn-primary" type="submit" @click="replay">Rejouer</button>
@@ -145,7 +131,7 @@
                 return {
                     gameStarted: false,
                     step: 1,
-                    agentName: "ST0503",
+                    agentName: "Sniper NAJI",
                     numberOfQuestions: 0,
                     progress: 0,
                     hintAvailable: true,
@@ -218,7 +204,7 @@
                     localStorage.setItem('showHint', this.showHint)
                 },
                 loadJsonData() {
-                    fetch('data/1.json')
+                    fetch('data/2.json')
                         .then(response => response.json())
                         .then(data => {
                             this.items = data.items,
